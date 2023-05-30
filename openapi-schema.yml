@@ -1,0 +1,50 @@
+openapi: 3.0.2
+info:
+  title: 'Система генерации вопросов'
+  version: '1'
+paths:
+  /api/v1/next-question/:
+    post:
+      operationId: createLoad
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NextQuestionPost'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Question'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    NextQuestionPost:
+      type: object
+      properties:
+        questions_num:
+          type: integer
+      required:
+        - questions_num
+    Question:
+      type: object
+      properties:
+        question_id:
+          type: string
+        text:
+          type: string
+        answer:
+          type: string
+        created_at:
+          type: string
+          format: date-time
